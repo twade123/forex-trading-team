@@ -1,0 +1,43 @@
+# Workspace Schedule Configuration
+# Each workspace (agent team) gets one of these.
+# The orchestrator agent creates/updates this when setting up a new trading team.
+#
+# Copy this template and customize for your workspace:
+#   cp workspace_schedule_example.yaml workspace_schedules/my_team.yaml
+
+workspace_id: "example-workspace-id"
+team_name: "EUR_USD Forex Team"
+
+# Which market profile to use (matches filename in Config/market_profiles/)
+market_profile: forex
+
+# Which instruments this team trades
+instruments:
+  - EUR_USD
+
+# Which timeframe drives the trading cycle schedule
+# Must exist in the market profile's scheduling section
+primary_timeframe: H1
+
+# Optional: override schedule from market profile
+# If omitted, uses the market profile's scheduling defaults
+# schedule_override:
+#   cron_minutes: "5"  # Run at :05 instead of :02
+
+# Position monitoring
+position_monitoring:
+  enabled: true
+  # offset_minutes from market profile used by default
+  # override: 15  # Optional: override offset in minutes
+
+# News monitoring
+news_monitoring:
+  enabled: true
+  # interval from market profile used by default
+  # override_interval_minutes: 10  # Optional override
+
+# Auto-start when scheduler launches
+auto_start: true
+
+# Logging level for this workspace's jobs
+log_level: INFO

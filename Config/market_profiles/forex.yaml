@@ -1,0 +1,87 @@
+market_type: forex
+display_name: "Forex (Foreign Exchange)"
+description: "Global currency market. 24 hours Sunday-Friday. Highest liquidity during London-NY overlap."
+
+hours:
+  continuous: false
+  timezone: "US/Eastern"
+  weekly_open:
+    day: sunday
+    hour: 17
+    minute: 0
+  weekly_close:
+    day: friday
+    hour: 17
+    minute: 0
+  daily_gap: null  # No daily settlement gap
+
+sessions:
+  - name: sydney
+    start_hour: 17
+    start_minute: 0
+    end_hour: 2
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "low_volume, session_open"
+  - name: tokyo
+    start_hour: 19
+    start_minute: 0
+    end_hour: 4
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "moderate_volume, yen_pairs_active"
+  - name: london
+    start_hour: 3
+    start_minute: 0
+    end_hour: 12
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "highest_volume, trend_starts"
+  - name: new_york
+    start_hour: 8
+    start_minute: 0
+    end_hour: 17
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "high_volume, usd_pairs_active"
+
+prime_window:
+  start_hour: 8
+  start_minute: 0
+  end_hour: 12
+  end_minute: 0
+  timezone: "US/Eastern"
+  reason: "London-NY overlap -- tightest spreads, highest volume, strongest trends"
+
+scheduling:
+  M15:
+    cron_minutes: "0,15,30,45"
+    position_monitor_offset: 7
+  H1:
+    cron_minutes: "2"
+    position_monitor_offset: 30
+  H4:
+    cron_minutes: "2"
+    cron_hours: "1,5,9,13,17,21"
+    position_monitor_offset: 120
+  D:
+    cron_hour: 17
+    cron_minute: 5
+    position_monitor_offset: 480
+
+news_monitoring:
+  interval_minutes: 5
+  high_impact_events:
+    - FOMC
+    - CPI
+    - NFP
+    - Fed_Speech
+    - GDP
+    - Retail_Sales
+    - Unemployment_Claims
+
+daily_report:
+  hour: 17
+  minute: 0
+  timezone: "US/Eastern"
+  days: "mon-fri"

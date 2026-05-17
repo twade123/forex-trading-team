@@ -1,0 +1,71 @@
+{
+  "version": "4.0",
+  "description": "Thesis-based condition detector. No direction, no pair-specific ranges. Universal market structure.",
+  "updated": "2026-03-02",
+  
+  "thesis_conditions": {
+    "description": "Cross → candles move from E100 → fan opens → BB expands → ENTER",
+    
+    "cross": {
+      "type": "E21 crosses E55",
+      "max_bars_ago": 20,
+      "note": "Cross is the setup event. Entry comes later when expansion confirms."
+    },
+    
+    "candle_distance": {
+      "description": "Price must be on correct side of E100 and moving away",
+      "min_e100_distance_check": true,
+      "note": "Not a fixed pip threshold — varies by pair volatility. Just needs to be moving away bar over bar."
+    },
+    
+    "fan_expansion": {
+      "description": "E21 to E100 spread (full fan) must be growing",
+      "measure": "abs(E21 - E100) / price",
+      "requirement": "expanding bar over bar",
+      "note": "E55 sits in the middle. Fan is the outer edges separating."
+    },
+    
+    "bb_expansion": {
+      "description": "Bollinger Band width must be growing — THE key differentiator",
+      "measure": "BB width (upper - lower) / mid * 100",
+      "min_delta_5bar": 0.04,
+      "note": "Winners avg +0.10 over 5 bars, losers avg -0.03. Threshold 0.04 is conservative."
+    },
+    
+    "parallel_check": {
+      "description": "Fan expansion and BB expansion should be roughly parallel",
+      "note": "If fan expands but BB contracts (or vice versa), setup is suspect."
+    }
+  },
+  
+  "alert_types": {
+    "EARLY_WARNING": {
+      "description": "Cross detected + RSI/Stoch extreme. Thesis not yet confirmed.",
+      "action": "Scout starts watching this pair. No alert to validator yet."
+    },
+    "CRITERIA_MET": {
+      "description": "Cross + candles away from E100 + fan expanding + BB expanding (Δ5bar > threshold).",
+      "action": "Generate chart → send to TA for narrative → send package to validator for vision decision."
+    }
+  },
+  
+  "exit_thesis": {
+    "description": "Mirror of entry thesis. Contraction = exit.",
+    "fan_contracting": "E21 moving toward E100 — fan closing",
+    "bb_contracting": "BB width shrinking bar over bar",
+    "trigger": "Fan contracting + BB contracting = TIGHTEN stop. Both sustained 3+ bars = CLOSE.",
+    "note": "Guardian handles this in code. Position monitor confirms visually."
+  },
+  
+  "pairs": [
+    "AUD_JPY", "AUD_USD", "EUR_AUD", "EUR_CHF", "EUR_GBP", "EUR_JPY",
+    "EUR_USD", "GBP_JPY", "GBP_USD", "NZD_USD", "USD_CAD", "USD_CHF", "USD_JPY"
+  ],
+  
+  "validated_by": {
+    "manual_trades": "28 trades (18W/10L). Winners: BB Δ5bar avg +0.104. Losers: BB Δ5bar avg -0.022.",
+    "vision_backtest": "98.6% TRADE precision (70W/1L) on V4 combined vision test.",
+    "guardian_optimizer": "+1,077p, 78.9% WR, PF 6.61 with optimal exit params.",
+    "backtest_mfe": "3yr M15 data: 21+ pip avg MFE at thesis entries across all 13 pairs."
+  }
+}

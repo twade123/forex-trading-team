@@ -1,0 +1,460 @@
+[
+  {
+    "id": "MID_S15_RANGING",
+    "name": "Middle Zone S15 Ranging",
+    "base_setup": "S15",
+    "regime": "ranging",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 5214,
+      "wins": 4477,
+      "losses": 707,
+      "win_rate": 85.86,
+      "profit_factor": 5.74,
+      "avg_win_pips": 16.58,
+      "avg_loss_pips": 18.3,
+      "avg_pips": 11.77,
+      "avg_mfe": 23.7,
+      "avg_mae": 7.61,
+      "avg_candles_held": 10.6,
+      "avg_atr": 0.03738
+    },
+    "entry_conditions": {
+      "rsi_range": "45-50",
+      "stoch_range": "40-50",
+      "adx_range": "30-35",
+      "bb_position": "inside_bands",
+      "preferred_candle": "hammer",
+      "preferred_trigger": "rsi_divergence"
+    },
+    "exit_rules": {
+      "tp_atr": 1.5,
+      "sl_atr": 2.5,
+      "max_candles": 21
+    },
+    "pair_filter": [
+      "EUR_CHF",
+      "USD_CAD",
+      "NZD_USD",
+      "EUR_JPY",
+      "EUR_GBP",
+      "EUR_USD"
+    ],
+    "best_session": "Asian",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 3830,
+        "win_rate": 87.2
+      },
+      {
+        "h4_agrees": "True",
+        "total": 1384,
+        "win_rate": 82.1
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 2557,
+        "win_rate": 84.3
+      },
+      {
+        "direction": "sell",
+        "total": 2657,
+        "win_rate": 87.4
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 49.047,
+        "avg_stoch": 48.792,
+        "avg_adx": 22.314,
+        "avg_bbw": 0.002,
+        "avg_mae": 23.978,
+        "avg_candles": 21.085
+      },
+      "loss_streak_limit": null
+    }
+  },
+  {
+    "id": "MID_S8_STRONG_TREND",
+    "name": "Middle Zone S8 Strong Trend",
+    "base_setup": "S8",
+    "regime": "strong_trend",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 1842,
+      "wins": 1547,
+      "losses": 295,
+      "win_rate": 83.98,
+      "profit_factor": 6.53,
+      "avg_win_pips": 35.28,
+      "avg_loss_pips": 28.34,
+      "avg_pips": 25.09,
+      "avg_mfe": 48.41,
+      "avg_mae": 17.42,
+      "avg_candles_held": 8.6,
+      "avg_atr": 0.13023
+    },
+    "entry_conditions": {
+      "rsi_range": "55-60",
+      "stoch_range": "70-80",
+      "adx_range": "35-40",
+      "bb_position": "inside_bands",
+      "preferred_candle": "bullish_engulfing",
+      "preferred_trigger": "other"
+    },
+    "exit_rules": {
+      "tp_atr": 3.0,
+      "sl_atr": 2.0,
+      "max_candles": 17
+    },
+    "pair_filter": [
+      "EUR_JPY",
+      "USD_CHF",
+      "EUR_GBP",
+      "EUR_USD",
+      "NZD_USD",
+      "USD_CAD"
+    ],
+    "best_session": "London",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 1138,
+        "win_rate": 80.3
+      },
+      {
+        "h4_agrees": "True",
+        "total": 704,
+        "win_rate": 89.9
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 718,
+        "win_rate": 82.2
+      },
+      {
+        "direction": "sell",
+        "total": 1124,
+        "win_rate": 85.1
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 46.693,
+        "avg_stoch": 44.699,
+        "avg_adx": 30.694,
+        "avg_bbw": 0.006,
+        "avg_mae": 37.029,
+        "avg_candles": 8.773
+      },
+      "loss_streak_limit": null
+    }
+  },
+  {
+    "id": "MID_S15_EXHAUSTION",
+    "name": "Middle Zone S15 Exhaustion",
+    "base_setup": "S15",
+    "regime": "exhaustion",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 980,
+      "wins": 956,
+      "losses": 16,
+      "win_rate": 97.55,
+      "profit_factor": 54.95,
+      "avg_win_pips": 18.87,
+      "avg_loss_pips": 20.52,
+      "avg_pips": 18.09,
+      "avg_mfe": 27.79,
+      "avg_mae": 4.76,
+      "avg_candles_held": 4.9,
+      "avg_atr": 0.0603
+    },
+    "entry_conditions": {
+      "rsi_range": "60-65",
+      "stoch_range": "40-50",
+      "adx_range": "25-30",
+      "bb_position": "inside_bands",
+      "preferred_candle": "shooting_star",
+      "preferred_trigger": "rsi_divergence"
+    },
+    "exit_rules": {
+      "tp_atr": 1.5,
+      "sl_atr": 2.0,
+      "max_candles": 9
+    },
+    "pair_filter": [
+      "USD_JPY",
+      "USD_CHF",
+      "GBP_JPY",
+      "EUR_AUD",
+      "EUR_USD"
+    ],
+    "best_session": "London",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 812,
+        "win_rate": 98.5
+      },
+      {
+        "h4_agrees": "True",
+        "total": 168,
+        "win_rate": 92.9
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 562,
+        "win_rate": 96.3
+      },
+      {
+        "direction": "sell",
+        "total": 418,
+        "win_rate": 99.3
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 39.401,
+        "avg_stoch": 30.314,
+        "avg_adx": 29.857,
+        "avg_bbw": 0.004,
+        "avg_mae": 25.469,
+        "avg_candles": 26.062
+      },
+      "loss_streak_limit": null
+    }
+  },
+  {
+    "id": "MID_S10_STRONG_TREND",
+    "name": "Middle Zone S10 Strong Trend",
+    "base_setup": "S10",
+    "regime": "strong_trend",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 485,
+      "wins": 434,
+      "losses": 51,
+      "win_rate": 89.48,
+      "profit_factor": 8.14,
+      "avg_win_pips": 44.64,
+      "avg_loss_pips": 46.69,
+      "avg_pips": 35.04,
+      "avg_mfe": 67.6,
+      "avg_mae": 24.17,
+      "avg_candles_held": 9.7,
+      "avg_atr": 0.19085
+    },
+    "entry_conditions": {
+      "rsi_range": "55-60",
+      "stoch_range": "60-70",
+      "adx_range": "35-40",
+      "bb_position": "inside_bands",
+      "preferred_candle": "none",
+      "preferred_trigger": "other"
+    },
+    "exit_rules": {
+      "tp_atr": 2.5,
+      "sl_atr": 1.0,
+      "max_candles": 19
+    },
+    "pair_filter": [
+      "AUD_JPY",
+      "EUR_AUD"
+    ],
+    "best_session": "NY_Overlap",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 315,
+        "win_rate": 88.3
+      },
+      {
+        "h4_agrees": "True",
+        "total": 170,
+        "win_rate": 91.8
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 162,
+        "win_rate": 92.0
+      },
+      {
+        "direction": "sell",
+        "total": 323,
+        "win_rate": 88.2
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 43.88,
+        "avg_stoch": 46.373,
+        "avg_adx": 35.985,
+        "avg_bbw": 0.02,
+        "avg_mae": 56.302,
+        "avg_candles": 2.627
+      },
+      "loss_streak_limit": null
+    }
+  },
+  {
+    "id": "MID_S18_STRONG_TREND",
+    "name": "Middle Zone S18 Strong Trend",
+    "base_setup": "S18",
+    "regime": "strong_trend",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 2192,
+      "wins": 1583,
+      "losses": 607,
+      "win_rate": 72.22,
+      "profit_factor": 2.9,
+      "avg_win_pips": 25.84,
+      "avg_loss_pips": 23.22,
+      "avg_pips": 12.23,
+      "avg_mfe": 28.23,
+      "avg_mae": 14.7,
+      "avg_candles_held": 14.3,
+      "avg_atr": 0.07727
+    },
+    "entry_conditions": {
+      "rsi_range": "55-60",
+      "stoch_range": "40-50",
+      "adx_range": "20-25",
+      "bb_position": "inside_bands",
+      "preferred_candle": "bearish_engulfing",
+      "preferred_trigger": "other"
+    },
+    "exit_rules": {
+      "tp_atr": 3.0,
+      "sl_atr": 1.5,
+      "max_candles": 28
+    },
+    "pair_filter": [
+      "EUR_GBP",
+      "GBP_USD",
+      "USD_CHF",
+      "AUD_USD",
+      "EUR_AUD",
+      "USD_JPY"
+    ],
+    "best_session": "Off_Hours",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 1512,
+        "win_rate": 71.2
+      },
+      {
+        "h4_agrees": "True",
+        "total": 680,
+        "win_rate": 74.6
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 902,
+        "win_rate": 63.4
+      },
+      {
+        "direction": "sell",
+        "total": 1290,
+        "win_rate": 78.4
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 48.823,
+        "avg_stoch": 49.489,
+        "avg_adx": 30.836,
+        "avg_bbw": 0.005,
+        "avg_mae": 29.506,
+        "avg_candles": 13.278
+      },
+      "loss_streak_limit": null
+    }
+  },
+  {
+    "id": "MID_S15_SQUEEZE",
+    "name": "Middle Zone S15 Squeeze",
+    "base_setup": "S15",
+    "regime": "squeeze",
+    "category": "middle_zone",
+    "stats": {
+      "total_trades": 356,
+      "wins": 348,
+      "losses": 0,
+      "win_rate": 97.75,
+      "profit_factor": 99,
+      "avg_win_pips": 14.55,
+      "avg_loss_pips": 0,
+      "avg_pips": 14.27,
+      "avg_mfe": 23.65,
+      "avg_mae": 5.12,
+      "avg_candles_held": 6.7,
+      "avg_atr": 0.05508
+    },
+    "entry_conditions": {
+      "rsi_range": "55-60",
+      "stoch_range": "60-70",
+      "adx_range": "15-20",
+      "bb_position": "inside_bands",
+      "preferred_candle": "bullish_engulfing",
+      "preferred_trigger": "rsi_divergence"
+    },
+    "exit_rules": {
+      "tp_atr": 2.0,
+      "sl_atr": 2.5,
+      "max_candles": 13
+    },
+    "pair_filter": [
+      "GBP_JPY"
+    ],
+    "best_session": "London",
+    "h4_alignment": [
+      {
+        "h4_agrees": "False",
+        "total": 252,
+        "win_rate": 98.8
+      },
+      {
+        "h4_agrees": "True",
+        "total": 104,
+        "win_rate": 95.2
+      }
+    ],
+    "direction_stats": [
+      {
+        "direction": "buy",
+        "total": 162,
+        "win_rate": 95.1
+      },
+      {
+        "direction": "sell",
+        "total": 194,
+        "win_rate": 100.0
+      }
+    ],
+    "anti_patterns": {
+      "loser_profile": {
+        "avg_rsi": 0,
+        "avg_stoch": 0,
+        "avg_adx": 0,
+        "avg_bbw": 0,
+        "avg_mae": 0,
+        "avg_candles": 0
+      },
+      "loss_streak_limit": null
+    }
+  }
+]

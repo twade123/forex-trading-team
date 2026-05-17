@@ -1,0 +1,222 @@
+{
+  "days_back": 90,
+  "n_trades": 254,
+  "wins_baseline": 147,
+  "losses_baseline": 98,
+  "no_m15_data": 0,
+  "sweep": [
+    {
+      "N": 3,
+      "lock": 0.5,
+      "saves": 5,
+      "saves_pips": 28.6,
+      "kills": 15,
+      "kills_pips": -49.0,
+      "unchanged": 3,
+      "net_delta_p": -18.9,
+      "avg_loss_saved": -5.2,
+      "avg_winner_killed_at": 3.8,
+      "save_kill_ratio": 0.33,
+      "per_pair_save": {
+        "EUR_USD": 3,
+        "EUR_GBP": 1,
+        "USD_CHF": 1
+      },
+      "per_pair_kill": {
+        "EUR_USD": 2,
+        "EUR_AUD": 5,
+        "USD_JPY": 1,
+        "EUR_CHF": 1,
+        "USD_CHF": 2,
+        "NZD_USD": 1,
+        "AUD_USD": 2,
+        "GBP_USD": 1
+      }
+    },
+    {
+      "N": 3,
+      "lock": 1.0,
+      "saves": 5,
+      "saves_pips": 31.1,
+      "kills": 14,
+      "kills_pips": -45.4,
+      "unchanged": 5,
+      "net_delta_p": -11.0,
+      "avg_loss_saved": -5.2,
+      "avg_winner_killed_at": 4.2,
+      "save_kill_ratio": 0.36,
+      "per_pair_save": {
+        "EUR_USD": 3,
+        "EUR_GBP": 1,
+        "USD_CHF": 1
+      },
+      "per_pair_kill": {
+        "EUR_USD": 2,
+        "EUR_AUD": 5,
+        "USD_JPY": 1,
+        "USD_CHF": 1,
+        "NZD_USD": 1,
+        "AUD_USD": 2,
+        "GBP_USD": 1,
+        "USD_CAD": 1
+      }
+    },
+    {
+      "N": 5,
+      "lock": 0.5,
+      "saves": 2,
+      "saves_pips": 16.5,
+      "kills": 9,
+      "kills_pips": -30.5,
+      "unchanged": 3,
+      "net_delta_p": -12.5,
+      "avg_loss_saved": -7.8,
+      "avg_winner_killed_at": 3.9,
+      "save_kill_ratio": 0.22,
+      "per_pair_save": {
+        "USD_CHF": 1,
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 3,
+        "USD_JPY": 1,
+        "EUR_CHF": 1,
+        "USD_CHF": 1,
+        "NZD_USD": 1,
+        "AUD_USD": 2
+      }
+    },
+    {
+      "N": 5,
+      "lock": 1.0,
+      "saves": 2,
+      "saves_pips": 17.5,
+      "kills": 9,
+      "kills_pips": -29.7,
+      "unchanged": 4,
+      "net_delta_p": -9.1,
+      "avg_loss_saved": -7.8,
+      "avg_winner_killed_at": 4.3,
+      "save_kill_ratio": 0.22,
+      "per_pair_save": {
+        "USD_CHF": 1,
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 3,
+        "USD_JPY": 1,
+        "USD_CHF": 1,
+        "NZD_USD": 1,
+        "AUD_USD": 2,
+        "USD_CAD": 1
+      }
+    },
+    {
+      "N": 8,
+      "lock": 0.5,
+      "saves": 2,
+      "saves_pips": 16.5,
+      "kills": 4,
+      "kills_pips": -7.9,
+      "unchanged": 3,
+      "net_delta_p": 10.1,
+      "avg_loss_saved": -7.8,
+      "avg_winner_killed_at": 2.5,
+      "save_kill_ratio": 0.5,
+      "per_pair_save": {
+        "USD_CHF": 1,
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 1,
+        "EUR_CHF": 1,
+        "AUD_USD": 2
+      }
+    },
+    {
+      "N": 8,
+      "lock": 1.0,
+      "saves": 2,
+      "saves_pips": 17.5,
+      "kills": 4,
+      "kills_pips": -9.6,
+      "unchanged": 4,
+      "net_delta_p": 11.0,
+      "avg_loss_saved": -7.8,
+      "avg_winner_killed_at": 3.4,
+      "save_kill_ratio": 0.5,
+      "per_pair_save": {
+        "USD_CHF": 1,
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 1,
+        "AUD_USD": 2,
+        "USD_CAD": 1
+      }
+    },
+    {
+      "N": 12,
+      "lock": 0.5,
+      "saves": 1,
+      "saves_pips": 10.7,
+      "kills": 4,
+      "kills_pips": -7.9,
+      "unchanged": 3,
+      "net_delta_p": 4.3,
+      "avg_loss_saved": -10.2,
+      "avg_winner_killed_at": 2.5,
+      "save_kill_ratio": 0.25,
+      "per_pair_save": {
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 1,
+        "EUR_CHF": 1,
+        "AUD_USD": 2
+      }
+    },
+    {
+      "N": 12,
+      "lock": 1.0,
+      "saves": 1,
+      "saves_pips": 11.2,
+      "kills": 3,
+      "kills_pips": -6.0,
+      "unchanged": 4,
+      "net_delta_p": 8.3,
+      "avg_loss_saved": -10.2,
+      "avg_winner_killed_at": 3.0,
+      "save_kill_ratio": 0.33,
+      "per_pair_save": {
+        "EUR_USD": 1
+      },
+      "per_pair_kill": {
+        "EUR_AUD": 1,
+        "AUD_USD": 2
+      }
+    }
+  ],
+  "best": {
+    "N": 8,
+    "lock": 1.0,
+    "saves": 2,
+    "saves_pips": 17.5,
+    "kills": 4,
+    "kills_pips": -9.6,
+    "unchanged": 4,
+    "net_delta_p": 11.0,
+    "avg_loss_saved": -7.8,
+    "avg_winner_killed_at": 3.4,
+    "save_kill_ratio": 0.5,
+    "per_pair_save": {
+      "USD_CHF": 1,
+      "EUR_USD": 1
+    },
+    "per_pair_kill": {
+      "EUR_AUD": 1,
+      "AUD_USD": 2,
+      "USD_CAD": 1
+    }
+  }
+}

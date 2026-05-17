@@ -1,0 +1,71 @@
+{
+  "_version": "1.0",
+  "_description": "Risk management settings \u2014 loaded by trading_cycle.py. Editable per user/workspace.",
+  "risk_limits": {
+    "min_confluence": 40,
+    "min_rr_ratio": 1.5,
+    "max_daily_loss_pct": 3.0,
+    "max_concurrent_trades": 3,
+    "max_risk_per_trade_pct": 2.0,
+    "max_correlated_positions": 1
+  },
+  "data_collection": {
+    "h4_candle_count": 50,
+    "h1_candle_count": 250,
+    "m15_candle_count": 100,
+    "stale_threshold_h1_hours": 2,
+    "stale_threshold_h4_hours": 8,
+    "stale_threshold_m15_minutes": 30,
+    "spread_warning_multiplier": 2.0,
+    "spread_extreme_multiplier": 4.0
+  },
+  "trading_hours": {
+    "market_open_day": "sunday",
+    "market_open_hour_et": 17,
+    "market_close_day": "friday",
+    "market_close_hour_et": 17,
+    "skip_first_minutes_after_open": 30,
+    "close_warning_hours_before": 2
+  },
+  "instruments": [
+    "EUR_USD",
+    "USD_JPY",
+    "GBP_USD",
+    "AUD_USD",
+    "NZD_USD",
+    "USD_CAD",
+    "USD_CHF",
+    "EUR_GBP",
+    "EUR_JPY",
+    "GBP_JPY",
+    "EUR_CHF",
+    "EUR_AUD",
+    "AUD_JPY"
+  ],
+  "position_management": {
+    "partial_exit_ratio": 0.5,
+    "partial_exit_rr": 2.0,
+    "trailing_stop_activation_rr": 2.0,
+    "trailing_stop_atr_multiplier": 2.0,
+    "max_hold_candles": 40,
+    "move_sl_to_breakeven_after_rr": 1.5
+  },
+  "position_sizing": {
+    "mode": "auto",
+    "fixed_units": 10000,
+    "fixed_lots": 0.1
+  },
+  "kelly_sizing": {
+    "use_half_kelly": true,
+    "max_position_pct": 2.0,
+    "min_trades_for_kelly": 20
+  },
+  "sniper": {
+    "threshold": 12,
+    "tp_atr": 2.0,
+    "sl_atr": 2.5
+  },
+  "watch_ttl_hours": 0.0,
+  "watch_check_interval_min": 5,
+  "default_units": "auto"
+}

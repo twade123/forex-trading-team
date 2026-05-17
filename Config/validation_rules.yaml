@@ -1,0 +1,317 @@
+# Validation rules for all trading pipeline data types.
+# This file is the source of truth for schema, range, enum,
+# and cross-field validation.  Adding a new data type is as
+# simple as adding a new top-level key here and (optionally)
+# registering a cross-field rule function in Python.
+#
+# Path notation uses dots for nested key access:
+#   "rsi.value" means data["rsi"]["value"]
+
+candles:
+  description: "Raw Oanda candle data"
+  discriminator:
+    required_keys: ["time", "mid", "volume", "complete"]
+  schema:
+    required_keys:
+      - time
+      - mid
+      - volume
+      - complete
+    nested:
+      mid:
+        required_keys: ["o", "h", "l", "c"]
+    types:
+      volume: int
+      complete: bool
+  ranges: {}
+  enums: {}
+  cross_field_rules:
+    - ohlc_consistency
+    - timestamp_continuity
+  list_type: true
+  item_schema:
+    required_keys: ["time", "mid", "volume", "complete"]
+    nested:
+      mid:
+        required_keys: ["o", "h", "l", "c"]
+
+indicators_core:
+  description: "Core indicator suite output from Indicators.compute_all()"
+  discriminator:
+    required_keys: ["emas", "rsi", "macd", "bollinger", "atr"]
+  schema:
+    required_keys:
+      - emas
+      - ema_crossovers
+      - ema200_trend
+      - rsi
+      - rsi_divergence
+      - macd
+      - bollinger
+      - atr
+  ranges:
+    rsi.value:
+      min: 0
+      max: 100
+    atr.value:
+      min: 0
+      exclusive_min: true
+    bollinger.bandwidth:
+      min: 0
+  enums:
+    ema200_trend.direction:
+      - bullish
+      - bearish
+      - neutral
+    macd.crossover:
+      - bullish
+      - bearish
+      - null
+    macd.momentum:
+      - positive
+      - negative
+      - null
+    bollinger.position:
+      - upper
+      - middle
+      - lower
+  cross_field_rules:
+    - bollinger_ordering
+
+indicators_advanced:
+  description: "Advanced indicator suite output from AdvancedIndicators.compute_all()"
+  discriminator:
+    required_keys: ["adx", "stochastic", "fibonacci", "vwap"]
+  schema:
+    required_keys:
+      - adx
+      - stochastic
+      - volume_sma
+      - fibonacci
+      - vwap
+  ranges:
+    adx.adx:
+      min: 0
+      max: 100
+    adx.plus_di:
+      min: 0
+      max: 100
+    adx.minus_di:
+      min: 0
+      max: 100
+    stochastic.k:
+      min: 0
+      max: 100
+    stochastic.d:
+      min: 0
+      max: 100
+    volume_sma.ratio:
+      min: 0
+  enums:
+    adx.regime:
+      - trending
+      - ranging
+      - mixed
+    adx.trend_direction:
+      - bullish
+      - bearish
+      - neutral
+  cross_field_rules:
+    - fibonacci_ordering
+
+alignment:
+  description: "Multi-timeframe alignment snapshot from MultiTimeframeAlignment.get_snapshot()"
+  discriminator:
+    required_keys: ["alignment", "indicators", "summary"]
+    nested_check:
+      alignment: ["per_timeframe"]
+  schema:
+    required_keys:
+      - alignment
+      - indicators
+      - summary
+    nested:
+      alignment:
+        required_keys: ["alignment", "score", "per_timeframe"]
+  ranges:
+    alignment.score:
+      min: -1.0
+      max: 1.0
+  enums:
+    alignment.alignment:
+      - bullish_aligned
+      - bullish_leaning
+      - bearish_aligned
+      - bearish_leaning
+      - neutral
+  cross_field_rules:
+    - weights_sum_to_one
+
+candlestick_patterns:
+  description: "Context-filtered candlestick pattern list from CandlestickPatterns.get_context_filtered()"
+  discriminator:
+    list_with_keys: ["name", "direction", "confidence", "context"]
+  schema:
+    list_type: true
+    item_keys:
+      - name
+      - direction
+      - confidence
+      - context
+  ranges:
+    confidence:
+      min: 0.0
+      max: 1.0
+    context.trend_score:
+      min: 0.0
+      max: 1.0
+    context.sr_score:
+      min: 0.0
+      max: 1.0
+    context.volume_score:
+      min: 0.0
+      max: 1.0
+    context.regime_score:
+      min: 0.0
+      max: 1.0
+  enums:
+    direction:
+      - bullish
+      - bearish
+  cross_field_rules: []
+
+chart_patterns:
+  description: "Chart pattern scan output from ChartPatterns.scan_all()"
+  discriminator:
+    required_keys: ["reversals", "continuations", "confirmed"]
+  schema:
+    required_keys:
+      - reversals
+      - continuations
+      - confirmed
+      - unconfirmed
+    types:
+      reversals: list
+      continuations: list
+      confirmed: list
+      unconfirmed: list
+  ranges:
+    "*.confidence":
+      min: 0.0
+      max: 1.0
+  enums:
+    "*.direction":
+      - bullish
+      - bearish
+      - neutral
+  cross_field_rules: []
+
+news_intelligence:
+  description: "News intelligence snapshot from NewsIntelligence.monitor()"
+  discriminator:
+    required_keys: ["sentiment", "events", "adjustment", "timestamp"]
+  schema:
+    required_keys:
+      - sentiment
+      - events
+      - adjustment
+      - timestamp
+  ranges:
+    sentiment.sentiment:
+      min: -1.0
+      max: 1.0
+  enums:
+    sentiment.classification:
+      - bullish
+      - bearish
+      - neutral
+    adjustment.action:
+      - flatten
+      - reduce
+      - none
+    adjustment.urgency:
+      - immediate
+      - soon
+      - none
+  cross_field_rules: []
+
+intelligence_aggregator:
+  description: "Intelligence aggregator output from IntelligenceAggregator.gather()"
+  discriminator:
+    required_keys: ["intelligence_available", "overall_risk"]
+  schema:
+    required_keys:
+      - news_data
+      - intelligence_available
+      - overall_risk
+  ranges: {}
+  enums:
+    overall_risk:
+      - none
+      - low
+      - moderate
+      - high
+      - extreme
+    position_adjustment.action:
+      - flatten
+      - reduce
+      - none
+  cross_field_rules: []
+
+trade_decision:
+  description: "Strategy engine output from StrategyEngine.evaluate()"
+  discriminator:
+    required_keys: ["action", "confluence", "rsi_gate", "tradeable"]
+  schema:
+    required_keys:
+      - action
+      - confluence
+      - rsi_gate
+      - session
+      - adjusted_score
+      - reasons
+      - tradeable
+  ranges:
+    adjusted_score:
+      min: 0
+      max: 120
+    confluence.total_score:
+      min: 0
+      max: 100
+  enums:
+    action:
+      - buy
+      - sell
+      - hold
+    confluence.direction:
+      - bullish
+      - bearish
+      - neutral
+    session.session_quality:
+      - prime
+      - active
+      - quiet
+  cross_field_rules:
+    - action_tradeable_consistency
+
+order:
+  description: "Oanda order payload"
+  discriminator:
+    required_keys: ["instrument", "units", "type"]
+  schema:
+    required_keys:
+      - instrument
+      - units
+      - type
+  ranges: {}
+  enums:
+    type:
+      - MARKET
+      - LIMIT
+      - STOP
+      - MARKET_IF_TOUCHED
+      - TAKE_PROFIT
+      - STOP_LOSS
+      - TRAILING_STOP_LOSS
+  cross_field_rules:
+    - stop_loss_present

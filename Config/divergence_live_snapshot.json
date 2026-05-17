@@ -1,0 +1,507 @@
+{
+  "EUR_USD": {
+    "div_bars_of_50": 8,
+    "div_pct": 16.0,
+    "types": {
+      "RSI_HIDDEN_BULL": 8
+    },
+    "current_rsi": 62.8,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -9,
+        "time": "2026-02-25T21:45",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 60.9700138572706,
+        "close": 1.18101
+      },
+      {
+        "bar": -8,
+        "time": "2026-02-25T22:00",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 58.78467974040505,
+        "close": 1.1809
+      },
+      {
+        "bar": -7,
+        "time": "2026-02-25T22:15",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 59.634553770629374,
+        "close": 1.18096
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 59.634553770629374,
+        "close": 1.18096
+      },
+      {
+        "bar": -5,
+        "time": "2026-02-25T22:45",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 62.33667691309967,
+        "close": 1.18114
+      }
+    ]
+  },
+  "GBP_USD": {
+    "div_bars_of_50": 8,
+    "div_pct": 16.0,
+    "types": {
+      "RSI_HIDDEN_BULL": 8
+    },
+    "current_rsi": 52.7,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -7,
+        "time": "2026-02-25T22:15",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 57.91698684960507,
+        "close": 1.35546
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 58.15631308512844,
+        "close": 1.35548
+      },
+      {
+        "bar": -5,
+        "time": "2026-02-25T22:45",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 59.15688208838529,
+        "close": 1.35556
+      },
+      {
+        "bar": -4,
+        "time": "2026-02-25T23:00",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 61.62726645756985,
+        "close": 1.35576
+      },
+      {
+        "bar": -3,
+        "time": "2026-02-25T23:15",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 62.83759734056018,
+        "close": 1.35586
+      },
+      {
+        "bar": -2,
+        "time": "2026-02-25T23:30",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 58.65370225847175,
+        "close": 1.35565
+      },
+      {
+        "bar": -1,
+        "time": "2026-02-25T23:45",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 60.15043039640636,
+        "close": 1.35576
+      },
+      {
+        "bar": 0,
+        "time": "2026-02-26T00:00",
+        "types": [
+          "RSI_HIDDEN_BULL"
+        ],
+        "rsi": 52.682132521277104,
+        "close": 1.35536
+      }
+    ]
+  },
+  "USD_JPY": {
+    "div_bars_of_50": 0,
+    "div_pct": 0.0,
+    "types": {},
+    "current_rsi": 33.5,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "AUD_USD": {
+    "div_bars_of_50": 11,
+    "div_pct": 22.0,
+    "types": {
+      "RSI_HIDDEN_BULL": 8,
+      "MACD_BEAR": 8
+    },
+    "current_rsi": 56.1,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -9,
+        "time": "2026-02-25T21:45",
+        "types": [
+          "RSI_HIDDEN_BULL",
+          "MACD_BEAR"
+        ],
+        "rsi": 64.68464367618662,
+        "close": 0.71235
+      },
+      {
+        "bar": -8,
+        "time": "2026-02-25T22:00",
+        "types": [
+          "RSI_HIDDEN_BULL",
+          "MACD_BEAR"
+        ],
+        "rsi": 60.08594608082784,
+        "close": 0.71216
+      },
+      {
+        "bar": -7,
+        "time": "2026-02-25T22:15",
+        "types": [
+          "RSI_HIDDEN_BULL",
+          "MACD_BEAR"
+        ],
+        "rsi": 56.87723051394224,
+        "close": 0.71202
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "RSI_HIDDEN_BULL",
+          "MACD_BEAR"
+        ],
+        "rsi": 58.90307248998532,
+        "close": 0.71214
+      },
+      {
+        "bar": -5,
+        "time": "2026-02-25T22:45",
+        "types": [
+          "MACD_BEAR"
+        ],
+        "rsi": 57.68702508480425,
+        "close": 0.71209
+      },
+      {
+        "bar": -4,
+        "time": "2026-02-25T23:00",
+        "types": [
+          "MACD_BEAR"
+        ],
+        "rsi": 57.87434068430421,
+        "close": 0.7121
+      },
+      {
+        "bar": -3,
+        "time": "2026-02-25T23:15",
+        "types": [
+          "MACD_BEAR"
+        ],
+        "rsi": 59.42196679961143,
+        "close": 0.71218
+      }
+    ]
+  },
+  "NZD_USD": {
+    "div_bars_of_50": 16,
+    "div_pct": 32.0,
+    "types": {
+      "RSI_BEAR": 16,
+      "MACD_BEAR": 16
+    },
+    "current_rsi": 57.9,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -9,
+        "time": "2026-02-25T21:45",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 67.18826550939659,
+        "close": 0.60012
+      },
+      {
+        "bar": -8,
+        "time": "2026-02-25T22:00",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 57.74361452176133,
+        "close": 0.59978
+      },
+      {
+        "bar": -7,
+        "time": "2026-02-25T22:15",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 59.19699843671921,
+        "close": 0.59986
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 58.65386154141718,
+        "close": 0.59984
+      },
+      {
+        "bar": -5,
+        "time": "2026-02-25T22:45",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 56.96526581710908,
+        "close": 0.59978
+      },
+      {
+        "bar": -4,
+        "time": "2026-02-25T23:00",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 62.06218938200327,
+        "close": 0.60004
+      },
+      {
+        "bar": -3,
+        "time": "2026-02-25T23:15",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 63.32171608518801,
+        "close": 0.60011
+      }
+    ]
+  },
+  "USD_CAD": {
+    "div_bars_of_50": 19,
+    "div_pct": 38.0,
+    "types": {
+      "RSI_BULL": 8,
+      "MACD_BULL": 15,
+      "RSI_HIDDEN_BEAR": 6
+    },
+    "current_rsi": 43.8,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -9,
+        "time": "2026-02-25T21:45",
+        "types": [
+          "RSI_HIDDEN_BEAR"
+        ],
+        "rsi": 39.46045242988895,
+        "close": 1.36747
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 41.16092139413565,
+        "close": 1.36746
+      },
+      {
+        "bar": -5,
+        "time": "2026-02-25T22:45",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 43.18942456941044,
+        "close": 1.36758
+      },
+      {
+        "bar": -4,
+        "time": "2026-02-25T23:00",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 43.53880080376894,
+        "close": 1.3676
+      },
+      {
+        "bar": -3,
+        "time": "2026-02-25T23:15",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 41.60975706456526,
+        "close": 1.36746
+      },
+      {
+        "bar": -2,
+        "time": "2026-02-25T23:30",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 45.335859413280005,
+        "close": 1.36766
+      },
+      {
+        "bar": -1,
+        "time": "2026-02-25T23:45",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 44.8732884818731,
+        "close": 1.36763
+      },
+      {
+        "bar": 0,
+        "time": "2026-02-26T00:00",
+        "types": [
+          "MACD_BULL"
+        ],
+        "rsi": 43.751550558875124,
+        "close": 1.36756
+      }
+    ]
+  },
+  "USD_CHF": {
+    "div_bars_of_50": 8,
+    "div_pct": 16.0,
+    "types": {
+      "MACD_BULL": 8
+    },
+    "current_rsi": 41.8,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "EUR_JPY": {
+    "div_bars_of_50": 11,
+    "div_pct": 22.0,
+    "types": {
+      "RSI_BEAR": 12,
+      "MACD_BEAR": 12
+    },
+    "current_rsi": 40.4,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "GBP_JPY": {
+    "div_bars_of_50": 18,
+    "div_pct": 36.0,
+    "types": {
+      "RSI_BEAR": 18,
+      "MACD_BEAR": 15
+    },
+    "current_rsi": 37.4,
+    "active_now": true,
+    "recent_divergences": [
+      {
+        "bar": -9,
+        "time": "2026-02-25T21:45",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 57.70873409418081,
+        "close": 212.026
+      },
+      {
+        "bar": -8,
+        "time": "2026-02-25T22:00",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 52.38431654040707,
+        "close": 211.95
+      },
+      {
+        "bar": -7,
+        "time": "2026-02-25T22:15",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 44.377754711449455,
+        "close": 211.812
+      },
+      {
+        "bar": -6,
+        "time": "2026-02-25T22:30",
+        "types": [
+          "RSI_BEAR",
+          "MACD_BEAR"
+        ],
+        "rsi": 51.44349438400188,
+        "close": 211.934
+      }
+    ]
+  },
+  "EUR_GBP": {
+    "div_bars_of_50": 13,
+    "div_pct": 26.0,
+    "types": {
+      "MACD_BULL": 13,
+      "RSI_BULL": 5
+    },
+    "current_rsi": 60.4,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "AUD_JPY": {
+    "div_bars_of_50": 10,
+    "div_pct": 20.0,
+    "types": {
+      "RSI_BEAR": 8,
+      "MACD_BEAR": 8,
+      "RSI_HIDDEN_BULL": 8
+    },
+    "current_rsi": 41.4,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "EUR_AUD": {
+    "div_bars_of_50": 0,
+    "div_pct": 0.0,
+    "types": {},
+    "current_rsi": 53.0,
+    "active_now": false,
+    "recent_divergences": []
+  },
+  "EUR_CHF": {
+    "div_bars_of_50": 0,
+    "div_pct": 0.0,
+    "types": {},
+    "current_rsi": 50.3,
+    "active_now": false,
+    "recent_divergences": []
+  }
+}

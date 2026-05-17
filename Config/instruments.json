@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "selected_instruments": [
+    "EUR_USD",
+    "USD_JPY"
+  ],
+  "instruments": {
+    "EUR_USD": {
+      "enabled": true,
+      "timeframes": [
+        "M15",
+        "H1",
+        "H4"
+      ],
+      "notes": "Primary pair. Tightest spreads, highest liquidity, most documented behavior.",
+      "selection_rationale": "Tightest average spread (1.77 pips) of all candidates. Lowest margin rate (2%) maximizes position size on $500 account. Moderate ATR(14) of 18.55 pips provides sufficient movement without excessive stop-loss distance. Max spread spike only 6.4 pips vs 15.7 for GBP_USD."
+    },
+    "USD_JPY": {
+      "enabled": true,
+      "timeframes": [
+        "M15",
+        "H1",
+        "H4"
+      ],
+      "notes": "Secondary pair. Different character, Asian session activity, JPY safe-haven dynamics.",
+      "selection_rationale": "Second tightest spread (1.95 pips). Highest ATR(14) at 45.74 pips provides the most pip movement opportunity per trade. Different session profile than EUR_USD (active during Tokyo/Asian session). 5% margin rate means smaller position sizes but strong pip movement compensates."
+    }
+  },
+  "defaults": {
+    "timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "candle_count": 500,
+    "price_component": "M"
+  }
+}

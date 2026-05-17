@@ -1,0 +1,632 @@
+[
+  {
+    "pair": "USD_CHF",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        26.04,
+        46.04
+      ],
+      "stoch_range": [
+        14.55,
+        44.55
+      ],
+      "adx_range": [
+        40.81,
+        50.81
+      ],
+      "bb_width": 0.00428
+    },
+    "actual_values": {
+      "rsi": 36.04,
+      "stoch_k": 29.55,
+      "adx": 45.81,
+      "bb_width": 0.00428
+    },
+    "backtest": {
+      "trades": 10357,
+      "wins": 8433,
+      "win_rate": 81.4,
+      "avg_pips": 13.5
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-06T19:33:35.774193+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_CHF",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        22.85,
+        42.85
+      ],
+      "stoch_range": [
+        0,
+        18.45
+      ],
+      "adx_range": [
+        20.23,
+        30.23
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 32.85,
+      "stoch_k": 3.45,
+      "adx": 25.23,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 78790,
+      "wins": 66719,
+      "win_rate": 84.7,
+      "avg_pips": 14.2
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-24T19:17:24.925321+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "USD_JPY",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        49.0,
+        69.0
+      ],
+      "stoch_range": [
+        14.29,
+        44.29
+      ],
+      "adx_range": [
+        37.7,
+        47.7
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 59.0,
+      "stoch_k": 29.29,
+      "adx": 42.7,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 529,
+      "wins": 475,
+      "win_rate": 89.8,
+      "avg_pips": 14.4
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T13:22:21.066259+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_JPY",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        48.71,
+        68.71000000000001
+      ],
+      "stoch_range": [
+        65.0,
+        95.0
+      ],
+      "adx_range": [
+        20.58,
+        30.58
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 58.71,
+      "stoch_k": 80.0,
+      "adx": 25.58,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 37233,
+      "wins": 33353,
+      "win_rate": 89.6,
+      "avg_pips": 15.9
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T16:27:44.750946+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_USD",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        53.47,
+        73.47
+      ],
+      "stoch_range": [
+        69.26,
+        99.26
+      ],
+      "adx_range": [
+        23.37,
+        33.370000000000005
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 63.47,
+      "stoch_k": 84.26,
+      "adx": 28.37,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 93999,
+      "wins": 76710,
+      "win_rate": 81.6,
+      "avg_pips": 12.6
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T16:27:50.760746+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "AUD_JPY",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        51.88,
+        71.88
+      ],
+      "stoch_range": [
+        47.79,
+        77.78999999999999
+      ],
+      "adx_range": [
+        26.1,
+        36.1
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 61.88,
+      "stoch_k": 62.79,
+      "adx": 31.1,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 19495,
+      "wins": 16320,
+      "win_rate": 83.7,
+      "avg_pips": 12.0
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T21:32:49.658464+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "AUD_USD",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        51.35,
+        71.35
+      ],
+      "stoch_range": [
+        70.09,
+        100
+      ],
+      "adx_range": [
+        21.0,
+        31.0
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 61.35,
+      "stoch_k": 85.09,
+      "adx": 26.0,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 71981,
+      "wins": 63128,
+      "win_rate": 87.7,
+      "avg_pips": 15.5
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-27T16:13:08.976909+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_AUD",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        27.93,
+        47.93
+      ],
+      "stoch_range": [
+        15.940000000000001,
+        45.94
+      ],
+      "adx_range": [
+        24.72,
+        34.72
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 37.93,
+      "stoch_k": 30.94,
+      "adx": 29.72,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 33925,
+      "wins": 27826,
+      "win_rate": 82.0,
+      "avg_pips": 13.9
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T22:25:19.567429+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "GBP_USD",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        51.64,
+        71.64
+      ],
+      "stoch_range": [
+        40.74,
+        70.74000000000001
+      ],
+      "adx_range": [
+        31.520000000000003,
+        41.52
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 61.64,
+      "stoch_k": 55.74,
+      "adx": 36.52,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 8325,
+      "wins": 6838,
+      "win_rate": 82.1,
+      "avg_pips": 11.5
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-25T21:17:42.371762+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "GBP_USD",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        27.590000000000003,
+        47.59
+      ],
+      "stoch_range": [
+        13.18,
+        43.18
+      ],
+      "adx_range": [
+        21.19,
+        31.19
+      ],
+      "bb_width": 0.00615
+    },
+    "actual_values": {
+      "rsi": 37.59,
+      "stoch_k": 28.18,
+      "adx": 26.19,
+      "bb_width": 0.00615
+    },
+    "backtest": {
+      "trades": 32797,
+      "wins": 28587,
+      "win_rate": 87.2,
+      "avg_pips": 16.5
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-06T10:20:15.642292+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_JPY",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        33.42,
+        53.42
+      ],
+      "stoch_range": [
+        50.629999999999995,
+        80.63
+      ],
+      "adx_range": [
+        35.96,
+        45.96
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 43.42,
+      "stoch_k": 65.63,
+      "adx": 40.96,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 1795,
+      "wins": 1608,
+      "win_rate": 89.6,
+      "avg_pips": 24.1
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-03T13:04:10.681717+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "GBP_JPY",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        33.82,
+        53.82
+      ],
+      "stoch_range": [
+        27.200000000000003,
+        57.2
+      ],
+      "adx_range": [
+        21.32,
+        31.32
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 43.82,
+      "stoch_k": 42.2,
+      "adx": 26.32,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 11606,
+      "wins": 9486,
+      "win_rate": 81.7,
+      "avg_pips": 14.3
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-02T09:32:37.547387+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "AUD_USD",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        22.97,
+        42.97
+      ],
+      "stoch_range": [
+        0,
+        29.990000000000002
+      ],
+      "adx_range": [
+        22.51,
+        32.510000000000005
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 32.97,
+      "stoch_k": 14.99,
+      "adx": 27.51,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 116989,
+      "wins": 93746,
+      "win_rate": 80.1,
+      "avg_pips": 12.2
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-02T07:33:13.058473+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "NZD_USD",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        22.11,
+        42.11
+      ],
+      "stoch_range": [
+        0,
+        23.84
+      ],
+      "adx_range": [
+        21.78,
+        31.78
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 32.11,
+      "stoch_k": 8.84,
+      "adx": 26.78,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 106078,
+      "wins": 85561,
+      "win_rate": 80.7,
+      "avg_pips": 12.5
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-02T07:03:12.889551+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_GBP",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        52.89,
+        72.89
+      ],
+      "stoch_range": [
+        61.92,
+        91.92
+      ],
+      "adx_range": [
+        23.88,
+        33.879999999999995
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 62.89,
+      "stoch_k": 76.92,
+      "adx": 28.88,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 53543,
+      "wins": 44301,
+      "win_rate": 82.7,
+      "avg_pips": 12.6
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-27T14:48:01.369512+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "USD_CAD",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        24.82,
+        44.82
+      ],
+      "stoch_range": [
+        0,
+        27.34
+      ],
+      "adx_range": [
+        22.2,
+        32.2
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 34.82,
+      "stoch_k": 12.34,
+      "adx": 27.2,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 104160,
+      "wins": 84938,
+      "win_rate": 81.5,
+      "avg_pips": 13.0
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-02-27T19:01:27.091395+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "EUR_GBP",
+    "regime": "strong_trend",
+    "direction": "sell",
+    "conditions": {
+      "rsi_range": [
+        29.689999999999998,
+        49.69
+      ],
+      "stoch_range": [
+        9.620000000000001,
+        39.620000000000005
+      ],
+      "adx_range": [
+        42.44,
+        52.44
+      ],
+      "bb_width": 0.005
+    },
+    "actual_values": {
+      "rsi": 39.69,
+      "stoch_k": 24.62,
+      "adx": 47.44,
+      "bb_width": 0.005
+    },
+    "backtest": {
+      "trades": 7259,
+      "wins": 6112,
+      "win_rate": 84.2,
+      "avg_pips": 15.4
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-03T19:33:31.558402+00:00",
+    "status": "validated"
+  },
+  {
+    "pair": "NZD_USD",
+    "regime": "strong_trend",
+    "direction": "buy",
+    "conditions": {
+      "rsi_range": [
+        50.37,
+        70.37
+      ],
+      "stoch_range": [
+        56.14,
+        86.14
+      ],
+      "adx_range": [
+        23.36,
+        33.36
+      ],
+      "bb_width": 0.0044
+    },
+    "actual_values": {
+      "rsi": 60.37,
+      "stoch_k": 71.14,
+      "adx": 28.36,
+      "bb_width": 0.0044
+    },
+    "backtest": {
+      "trades": 29543,
+      "wins": 25158,
+      "win_rate": 85.2,
+      "avg_pips": 13.1
+    },
+    "sniper_score": 0,
+    "discovered_at": "2026-03-06T19:30:56.653448+00:00",
+    "status": "validated"
+  }
+]

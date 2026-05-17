@@ -1,0 +1,85 @@
+market_type: futures
+display_name: "Futures (CME Globex)"
+description: "Exchange-traded futures. Nearly 24h Sun-Fri with daily settlement gap."
+
+hours:
+  continuous: false
+  timezone: "US/Eastern"
+  weekly_open:
+    day: sunday
+    hour: 18
+    minute: 0
+  weekly_close:
+    day: friday
+    hour: 17
+    minute: 0
+  daily_gap:
+    close_hour: 17
+    close_minute: 0
+    reopen_hour: 18
+    reopen_minute: 0
+    days: [mon, tue, wed, thu]
+
+sessions:
+  - name: globex_overnight
+    start_hour: 18
+    start_minute: 0
+    end_hour: 9
+    end_minute: 30
+    timezone: "US/Eastern"
+    characteristics: "lower_volume, electronic_trading"
+  - name: rth
+    start_hour: 9
+    start_minute: 30
+    end_hour: 16
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "highest_volume, regular_trading_hours, pit_session"
+  - name: post_close
+    start_hour: 16
+    start_minute: 0
+    end_hour: 17
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "settlement_period, low_volume"
+
+prime_window:
+  start_hour: 9
+  start_minute: 30
+  end_hour: 11
+  end_minute: 30
+  timezone: "US/Eastern"
+  reason: "RTH open -- highest volume, institutional order flow, gap fills"
+
+scheduling:
+  M15:
+    cron_minutes: "0,15,30,45"
+    position_monitor_offset: 7
+  H1:
+    cron_minutes: "2"
+    position_monitor_offset: 30
+  H4:
+    cron_minutes: "2"
+    cron_hours: "2,6,10,14,18,22"
+    position_monitor_offset: 120
+  D:
+    cron_hour: 17
+    cron_minute: 5
+    position_monitor_offset: 480
+
+news_monitoring:
+  interval_minutes: 5
+  high_impact_events:
+    - FOMC
+    - CPI
+    - NFP
+    - EIA_Crude
+    - USDA_Report
+    - Fed_Speech
+    - Treasury_Auction
+
+daily_report:
+  hour: 17
+  minute: 0
+  timezone: "US/Eastern"
+  days: "mon-fri"

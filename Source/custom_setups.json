@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "description": "Auto-discovered trading setups (S21+). Loaded by setup_classifier.py at runtime.",
+    "version": 1,
+    "last_updated": "2026-02-25T21:46:16.648700"
+  },
+  "setups": [
+    {
+      "setup_id": "S23",
+      "name": "Double Low Power Buy",
+      "conditions": {
+        "rsi": {
+          "max": 25
+        },
+        "stoch_k": {
+          "max": 20
+        },
+        "bb_position": "below_mid",
+        "adx": {
+          "min": 15
+        }
+      },
+      "regimes": [
+        "ranging",
+        "exhaustion"
+      ],
+      "direction": "buy",
+      "backtest_stats": {
+        "trades": 14401,
+        "win_rate": 70.1,
+        "pairs_passing": 10,
+        "top_pairs": [
+          "AUD_JPY",
+          "EUR_JPY",
+          "GBP_USD"
+        ]
+      },
+      "description": "RSI <=25 + Stoch <=20 + price below BB mid + ADX>=15. Deep oversold double-confirmation buy.",
+      "discovered_date": "2026-02-24",
+      "status": "active"
+    },
+    {
+      "setup_id": "S21",
+      "name": "Auto Buy (stoch_k, adx)",
+      "conditions": {
+        "stoch_k": {
+          "max": 32
+        },
+        "adx": {
+          "min": 25
+        }
+      },
+      "regimes": [
+        "exhaustion",
+        "squeeze"
+      ],
+      "direction": "buy",
+      "backtest_stats": {
+        "trades": 5339,
+        "win_rate": 80.8,
+        "pairs_passing": 13,
+        "top_pairs": [
+          "GBP_USD",
+          "EUR_CHF",
+          "AUD_USD"
+        ]
+      },
+      "description": "On-demand discovery: Auto Buy (stoch_k, adx). 80.8% WR across 5339 trades.",
+      "discovered_date": "2026-02-25",
+      "status": "active"
+    }
+  ]
+}

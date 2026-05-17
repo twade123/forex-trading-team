@@ -1,0 +1,150 @@
+# Risk Asset Class Configuration
+# Mirrors validation_rules.yaml pattern — config-driven, auto-routing by asset class.
+# Adding a new asset class = adding a YAML block, not writing code.
+# Resolution: global_defaults <- asset_classes.{class} <- instrument_overrides.{instrument}
+
+asset_class_detection:
+  # Priority order: lower number checked first.
+  # Crypto MUST be checked before forex to prevent BTC_USD matching XXX_YYY.
+  crypto:
+    priority: 1
+    patterns:
+      - "^(BTC|ETH|LTC|XRP|SOL|ADA|DOT|DOGE|AVAX|LINK|UNI|MATIC|SHIB)_"
+      - "_USDT$"
+      - "_USDC$"
+  commodity:
+    priority: 2
+    patterns:
+      - "^(XAU|XAG|XPT|XPD)_"
+      - "^(WTICO|NATGAS|WHEAT|CORN|SOYBN|SUGAR)_"
+  index:
+    priority: 3
+    patterns:
+      - "^(SPX500|US30|NAS100|UK100|DE30|JP225|AU200|HK33|EU50|FR40)_"
+  futures:
+    priority: 4
+    patterns:
+      - "^(CL|GC|SI|NG|ZB|ZN|ZF|ES|NQ|YM|RTY)_"
+      - "_FUT$"
+  forex:
+    priority: 99
+    patterns:
+      - "^[A-Z]{3}_[A-Z]{3}$"
+
+global_defaults:
+  position_sizing:
+    method: "fixed_fractional"
+    min_units: 1
+    max_leverage_effective: 10.0
+    margin_utilization_cap: 0.50
+  volatility:
+    atr_period: 14
+    regime_multipliers:
+      trending: 2.0
+      ranging: 1.2
+      mixed: 1.5
+      news: 2.5
+    volatility_adaptation: true
+    atr_ratio_period: 50
+  stop_management:
+    min_rr_ratio: 2.0
+    min_stop_spread_multiple: 2.0
+    trailing_algorithm: "chandelier"
+    chandelier_lookback: 22
+    chandelier_multiplier: 3.0
+    time_decay_enabled: true
+    time_decay_max_bars: 48
+  partial_tp:
+    enabled: true
+    split_ratios: [0.50, 0.25, 0.25]
+    tp_levels_r: [1.0, 2.0, null]
+    profit_lock_trigger_r: 1.0
+    profit_lock_amount_r: 0.25
+  safety:
+    oanda_native_trail_atr_mult: 4.0
+    spread_filter_max_atr_pct: 0.10
+
+asset_classes:
+  forex:
+    position_sizing:
+      model: "pip_based"
+      unit_precision: 0
+    volatility:
+      measure: "atr_price"
+    session_adjustments:
+      enabled: true
+      overlap_multiplier: 1.0
+      quiet_multiplier: 0.5
+    overnight:
+      reduce_size: true
+    weekend:
+      close_before_friday: true
+      close_time_et: "16:30"
+    correlation_groups:
+      eur_group: ["EUR_USD", "EUR_GBP", "EUR_JPY", "EUR_CHF", "EUR_AUD"]
+      jpy_group: ["USD_JPY", "EUR_JPY", "GBP_JPY", "AUD_JPY"]
+      commodity_currencies: ["AUD_USD", "NZD_USD", "USD_CAD"]
+      gbp_group: ["GBP_USD", "GBP_JPY", "EUR_GBP"]
+    max_positions_per_correlation_group: 1
+
+  crypto:
+    position_sizing:
+      model: "percentage_based"
+      min_units: 0.0001
+      max_leverage_effective: 2.0
+    volatility:
+      measure: "atr_percentage"
+      regime_multipliers:
+        trending: 1.5
+        ranging: 1.0
+        mixed: 1.2
+        news: 2.0
+    session_adjustments:
+      enabled: false
+    overnight:
+      reduce_size: false
+    weekend:
+      close_before_friday: false
+    fee_model:
+      factor_fees_into_rr: true
+      typical_fee_pct: 0.20
+
+  index:
+    position_sizing:
+      model: "point_based"
+      unit_precision: 0
+      max_leverage_effective: 5.0
+    volatility:
+      measure: "atr_points"
+      regime_multipliers:
+        trending: 2.0
+        ranging: 1.5
+        mixed: 1.75
+        news: 3.0
+    session_adjustments:
+      enabled: true
+    overnight:
+      reduce_size: true
+    weekend:
+      close_before_friday: true
+
+  futures:
+    position_sizing:
+      model: "contract_based"
+      unit_precision: 0
+      max_leverage_effective: 5.0
+    volatility:
+      measure: "atr_ticks"
+    rollover:
+      auto_detect_expiry: true
+      close_days_before_expiry: 5
+    margin:
+      check_initial_margin: true
+
+instrument_overrides:
+  EUR_USD:
+    spread_filter_max_pips: 3.0
+    description: "Primary pair — tightest spreads"
+  USD_JPY:
+    spread_filter_max_pips: 3.0
+    description: "Secondary pair — Asian session diversification"

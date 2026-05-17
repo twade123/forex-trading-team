@@ -1,0 +1,68 @@
+profiles:
+  conservative:
+    risk_pct: 0.005              # 0.5% per trade
+    min_confluence: 80           # Higher bar for trade entry
+    max_concurrent_trades: 2
+    max_daily_loss_pct: 3.0      # 3% daily loss limit
+    max_portfolio_heat_pct: 3.0  # 3% max portfolio heat
+    atr_multiplier: 2.0          # Wider stops (more conservative)
+    min_rr_ratio: 2.5            # Require higher reward
+    overnight_size_mult: 0.50    # Halve positions overnight
+    weekend_close: true          # Close before weekend
+    event_flatten_minutes: 60    # Flatten 60 min before events
+    max_correlation_group_positions: 1
+    description: "Low risk — tight daily limits, wider stops, higher confluence required"
+
+  normal:
+    risk_pct: 0.01               # 1% per trade
+    min_confluence: 70           # Standard threshold (STRT-02)
+    max_concurrent_trades: 3
+    max_daily_loss_pct: 5.0      # 5% daily loss limit
+    max_portfolio_heat_pct: 5.0  # 5% max portfolio heat
+    atr_multiplier: 1.5          # Standard stops
+    min_rr_ratio: 2.0            # Standard reward
+    overnight_size_mult: 0.75    # 75% overnight
+    weekend_close: true          # Close before weekend
+    event_flatten_minutes: 30    # Flatten 30 min before events
+    max_correlation_group_positions: 1
+    description: "Balanced — standard risk/reward, moderate daily limits"
+
+  aggressive:
+    risk_pct: 0.02               # 2% per trade
+    min_confluence: 60           # Lower bar for trade entry
+    max_concurrent_trades: 4
+    max_daily_loss_pct: 7.0      # 7% daily loss limit
+    max_portfolio_heat_pct: 8.0  # 8% max portfolio heat
+    atr_multiplier: 1.5          # Standard stops
+    min_rr_ratio: 2.0            # Standard reward (never lower, even aggressive)
+    overnight_size_mult: 0.75    # 75% overnight
+    weekend_close: false         # Tim accepts weekend risk
+    event_flatten_minutes: 30    # Flatten 30 min before events
+    max_correlation_group_positions: 2
+    description: "Higher risk — larger positions, more concurrent trades, lower confluence bar"
+
+default_profile: normal
+
+# Auto-adjustment rules (RISK-06, RISK-07)
+auto_adjustment:
+  consecutive_losses_to_reduce: 3     # Drop one level after N consecutive losses
+  consecutive_wins_to_restore: 3      # Restore after N consecutive wins at reduced level
+  reduction_order: [aggressive, normal, conservative]  # Order of reduction
+
+# Absolute limits — NEVER overridden, even by custom profiles
+absolute_limits:
+  max_overall_drawdown_pct: 10.0      # 10% overall drawdown -> halt (RMGT-09)
+  max_risk_pct: 0.05                  # 5% max per trade (custom profile ceiling)
+  min_risk_pct: 0.001                 # 0.1% min per trade
+  max_concurrent_trades: 10           # Hard ceiling
+  min_confluence: 40                  # Cannot go lower than 40
+
+# Custom profile bounds for validation
+custom_bounds:
+  risk_pct: [0.001, 0.05]
+  min_confluence: [40, 100]
+  max_concurrent_trades: [1, 10]
+  max_daily_loss_pct: [1.0, 15.0]
+  max_portfolio_heat_pct: [1.0, 15.0]
+  atr_multiplier: [1.0, 3.0]
+  min_rr_ratio: [1.5, 5.0]

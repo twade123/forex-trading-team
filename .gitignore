@@ -1,0 +1,102 @@
+# ── Secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+API/
+
+# ── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+venv/
+.venv/
+
+# ── macOS / IDE ─────────────────────────────────────────────────
+.DS_Store
+.cursor/
+.vscode/
+.idea/
+
+# ── Databases (runtime data, never commit) ──────────────────────
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# ── Logs ────────────────────────────────────────────────────────
+*.log
+logs/
+Logs/
+debug_logs/
+
+# ── Backup files ────────────────────────────────────────────────
+*.bak
+*.bak.*
+*.bak2
+*.old
+*.orig
+*.pre_*
+*.phase2_backup
+*_backup
+*.clean
+
+# ── Runtime state ───────────────────────────────────────────────
+.pids/
+.account_state.json
+.circuit_breaker_state.json
+.risk_state.json
+dashboard/cycle_state/
+dashboard/cycle_data.json
+dashboard/intelligence_status.json
+dashboard/learning_events.json
+dashboard/lineage_report.json
+dashboard/pair_cooldowns.json
+dashboard/qa_status.json
+dashboard/reentry_signals.json
+dashboard/sentry_*.json
+dashboard/user_charts/
+
+# ── ML model weights & adapters (publish on HuggingFace, not git) ──
+*.safetensors
+*.gguf
+*.bin
+*.pt
+*.pth
+*.onnx
+models/
+adapters/
+
+# ── Generated charts / reports ──────────────────────────────────
+tmp_*.png
+chart_*.png
+charts/
+Reports/
+Results/
+outputs/
+
+# ── Analysis output ─────────────────────────────────────────────
+analysis/reports/
+analysis/visualizations/
+
+# ── Node ────────────────────────────────────────────────────────
+node_modules/
+
+# ── Optuna studies (large, regenerable) ─────────────────────────
+optuna_studies.db
+optuna_studies.db-*
+Source/optimizer/optuna_studies.db*
+
+# ── Flight recorder backups ─────────────────────────────────────
+flight_recorder.db.bak.*

@@ -1,0 +1,228 @@
+{
+  "_version": "1.0",
+  "_description": "Dynamic pair-aware schedule. Regenerated when user changes active pairs. Intelligence and orchestrator read this to know what to query and when.",
+  "_generated_from": "User pair selection in dashboard",
+
+  "active_pairs": ["EUR_USD"],
+
+  "pair_configs": {
+    "EUR_USD": {
+      "currencies": ["USD", "EUR"],
+      "active_sessions": ["london", "new_york"],
+      "best_window_et": {"start": "08:00", "end": "12:00"},
+      "skip_sessions": ["sydney"],
+      "weather_locations": [],
+      "news_keywords": [
+        "Federal Reserve AND (interest rate OR monetary policy OR inflation)",
+        "ECB AND (interest rate OR monetary policy OR inflation)",
+        "US nonfarm payrolls OR US employment",
+        "US CPI OR US inflation",
+        "eurozone CPI OR eurozone inflation"
+      ]
+    },
+    "GBP_USD": {
+      "currencies": ["USD", "GBP"],
+      "active_sessions": ["london", "new_york"],
+      "best_window_et": {"start": "08:00", "end": "12:00"},
+      "skip_sessions": ["sydney"],
+      "weather_locations": [],
+      "news_keywords": [
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "Bank of England AND (interest rate OR monetary policy)",
+        "UK CPI OR UK inflation",
+        "UK employment OR UK unemployment"
+      ]
+    },
+    "USD_JPY": {
+      "currencies": ["USD", "JPY"],
+      "active_sessions": ["tokyo", "london", "new_york"],
+      "best_window_et": {"start": "08:00", "end": "12:00"},
+      "skip_sessions": [],
+      "weather_locations": ["Tokyo"],
+      "news_keywords": [
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "Bank of Japan AND (interest rate OR monetary policy OR yield curve)",
+        "Japan intervention OR yen intervention"
+      ]
+    },
+    "AUD_USD": {
+      "currencies": ["USD", "AUD"],
+      "active_sessions": ["sydney", "tokyo", "new_york"],
+      "best_window_et": {"start": "19:00", "end": "02:00"},
+      "skip_sessions": ["london"],
+      "weather_locations": ["Sydney", "Melbourne"],
+      "news_keywords": [
+        "Reserve Bank of Australia AND (interest rate OR monetary policy)",
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "China economy OR China trade OR iron ore price"
+      ]
+    },
+    "NZD_USD": {
+      "currencies": ["USD", "NZD"],
+      "active_sessions": ["sydney", "tokyo"],
+      "best_window_et": {"start": "19:00", "end": "02:00"},
+      "skip_sessions": ["london", "new_york"],
+      "weather_locations": ["Auckland", "Wellington"],
+      "news_keywords": [
+        "RBNZ AND (interest rate OR monetary policy)",
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "New Zealand dairy OR China trade"
+      ]
+    },
+    "USD_CAD": {
+      "currencies": ["USD", "CAD"],
+      "active_sessions": ["new_york"],
+      "best_window_et": {"start": "08:00", "end": "17:00"},
+      "skip_sessions": ["sydney", "tokyo"],
+      "weather_locations": ["Calgary"],
+      "news_keywords": [
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "Bank of Canada AND (interest rate OR monetary policy)",
+        "crude oil price OR OPEC OR Canada oil"
+      ]
+    },
+    "USD_CHF": {
+      "currencies": ["USD", "CHF"],
+      "active_sessions": ["london", "new_york"],
+      "best_window_et": {"start": "08:00", "end": "12:00"},
+      "skip_sessions": ["sydney", "tokyo"],
+      "weather_locations": [],
+      "news_keywords": [
+        "Federal Reserve AND (interest rate OR monetary policy)",
+        "Swiss National Bank AND (interest rate OR monetary policy)",
+        "Swiss franc safe haven OR SNB intervention"
+      ]
+    },
+    "EUR_GBP": {
+      "currencies": ["EUR", "GBP"],
+      "active_sessions": ["london"],
+      "best_window_et": {"start": "03:00", "end": "12:00"},
+      "skip_sessions": ["sydney", "tokyo", "new_york"],
+      "weather_locations": [],
+      "news_keywords": [
+        "ECB AND (interest rate OR monetary policy)",
+        "Bank of England AND (interest rate OR monetary policy)",
+        "eurozone vs UK economy"
+      ]
+    },
+    "EUR_JPY": {
+      "currencies": ["EUR", "JPY"],
+      "active_sessions": ["tokyo", "london"],
+      "best_window_et": {"start": "03:00", "end": "04:00"},
+      "skip_sessions": ["sydney"],
+      "weather_locations": ["Tokyo"],
+      "news_keywords": [
+        "ECB AND (interest rate OR monetary policy)",
+        "Bank of Japan AND (interest rate OR monetary policy)"
+      ]
+    },
+    "GBP_JPY": {
+      "currencies": ["GBP", "JPY"],
+      "active_sessions": ["tokyo", "london"],
+      "best_window_et": {"start": "03:00", "end": "12:00"},
+      "skip_sessions": ["sydney"],
+      "weather_locations": ["Tokyo"],
+      "news_keywords": [
+        "Bank of England AND (interest rate OR monetary policy)",
+        "Bank of Japan AND (interest rate OR monetary policy)"
+      ]
+    },
+    "AUD_NZD": {
+      "currencies": ["AUD", "NZD"],
+      "active_sessions": ["sydney", "tokyo"],
+      "best_window_et": {"start": "17:00", "end": "02:00"},
+      "skip_sessions": ["london", "new_york"],
+      "weather_locations": ["Sydney", "Auckland"],
+      "news_keywords": [
+        "Reserve Bank of Australia AND (interest rate OR monetary policy)",
+        "RBNZ AND (interest rate OR monetary policy)",
+        "dairy price OR iron ore price"
+      ]
+    },
+    "EUR_CHF": {
+      "currencies": ["EUR", "CHF"],
+      "active_sessions": ["london"],
+      "best_window_et": {"start": "03:00", "end": "12:00"},
+      "skip_sessions": ["sydney", "tokyo"],
+      "weather_locations": [],
+      "news_keywords": [
+        "ECB AND (interest rate OR monetary policy)",
+        "Swiss National Bank AND (interest rate OR monetary policy)"
+      ]
+    },
+    "EUR_AUD": {
+      "currencies": ["EUR", "AUD"],
+      "active_sessions": ["sydney", "tokyo", "london"],
+      "best_window_et": {"start": "03:00", "end": "04:00"},
+      "skip_sessions": [],
+      "weather_locations": ["Sydney"],
+      "news_keywords": [
+        "ECB AND (interest rate OR monetary policy)",
+        "Reserve Bank of Australia AND (interest rate OR monetary policy)",
+        "China economy OR iron ore"
+      ]
+    }
+  },
+
+  "currency_queries": {
+    "USD": {
+      "rate": "US federal funds rate",
+      "inflation": "US inflation rate",
+      "employment": "US unemployment rate",
+      "gdp": "US GDP growth rate",
+      "trade": "US trade deficit"
+    },
+    "EUR": {
+      "rate": "eurozone interest rate",
+      "inflation": "eurozone inflation rate",
+      "employment": "eurozone unemployment rate",
+      "gdp": "eurozone GDP growth rate",
+      "trade": "eurozone trade balance"
+    },
+    "GBP": {
+      "rate": "UK interest rate",
+      "inflation": "UK inflation rate",
+      "employment": "UK unemployment rate",
+      "gdp": "UK GDP growth rate",
+      "trade": "UK trade balance"
+    },
+    "JPY": {
+      "rate": "Japan interest rate",
+      "inflation": "Japan inflation rate",
+      "employment": "Japan unemployment rate",
+      "gdp": "Japan GDP",
+      "trade": "Japan trade balance"
+    },
+    "AUD": {
+      "rate": "Australia interest rate",
+      "inflation": "Australia inflation rate",
+      "employment": "Australia unemployment rate",
+      "gdp": "Australia GDP growth rate",
+      "trade": "exports Australia",
+      "commodity": "price iron"
+    },
+    "NZD": {
+      "rate": "New Zealand interest rate",
+      "inflation": "New Zealand inflation rate",
+      "employment": "New Zealand unemployment rate",
+      "gdp": "New Zealand GDP growth rate",
+      "trade": "exports New Zealand",
+      "commodity": "dairy price index"
+    },
+    "CAD": {
+      "rate": "Canada interest rate",
+      "inflation": "Canada inflation rate",
+      "employment": "Canada unemployment rate",
+      "gdp": "Canada GDP growth rate",
+      "trade": "Canada trade balance",
+      "commodity": "crude oil price"
+    },
+    "CHF": {
+      "rate": "Switzerland interest rate",
+      "inflation": "Switzerland inflation rate",
+      "employment": "Switzerland unemployment rate",
+      "gdp": "Switzerland GDP growth rate",
+      "trade": "Switzerland trade balance"
+    }
+  }
+}

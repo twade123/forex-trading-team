@@ -1,0 +1,76 @@
+# Market Profile Schema Reference
+# ================================
+# Agents use this schema when creating new market profiles via research.
+# All times use 24-hour format. Timezone is always specified.
+# To create a new market profile, copy this schema and fill in the values,
+# then save as {market_type}.yaml in this directory.
+
+market_type: string        # Unique identifier: "forex", "crypto", "futures", "commodities", etc.
+display_name: string       # Human-readable: "Forex (Foreign Exchange)"
+description: string        # Brief description of market characteristics
+
+hours:
+  continuous: boolean      # true = 24/7 (crypto), false = has open/close
+  timezone: string         # Primary timezone for this market (e.g., "US/Eastern")
+  # If continuous: false, define open/close:
+  weekly_open:
+    day: string            # "sunday", "monday", etc.
+    hour: integer          # 0-23
+    minute: integer        # 0-59 (default 0)
+  weekly_close:
+    day: string
+    hour: integer
+    minute: integer
+  # Optional: daily settlement gap (futures)
+  daily_gap:
+    close_hour: integer
+    close_minute: integer
+    reopen_hour: integer
+    reopen_minute: integer
+    days: list             # Which days have the gap: ["mon","tue","wed","thu"]
+
+sessions:                  # Named trading sessions -- list of dicts
+  - name: string           # "london", "new_york", "asia", "rth", etc.
+    start_hour: integer
+    start_minute: integer
+    end_hour: integer
+    end_minute: integer
+    timezone: string       # Can differ from market timezone
+    characteristics: string # "highest_volume", "volatile_open", etc.
+
+prime_window:              # Best trading window -- highest confluence
+  start_hour: integer
+  start_minute: integer
+  end_hour: integer
+  end_minute: integer
+  timezone: string
+  reason: string           # "London-NY overlap", "US open", etc.
+
+scheduling:                # Per-timeframe cycle scheduling
+  # Keys are granularity codes matching Oanda API: M1, M5, M15, M30, H1, H4, D, W, M
+  # Each defines when cycles fire for that timeframe
+  M15:
+    cron_minutes: string   # "0,15,30,45" -- aligned to candle close
+    position_monitor_offset: integer  # Minutes after cycle to check positions
+  H1:
+    cron_minutes: string   # "0" -- top of every hour
+    position_monitor_offset: integer
+  H4:
+    cron_minutes: string   # "0" -- every 4 hours at 0,4,8,12,16,20
+    cron_hours: string     # "0,4,8,12,16,20"
+    position_monitor_offset: integer
+  D:
+    cron_hour: integer     # Hour to run daily cycle (e.g., 17 for 5PM ET)
+    cron_minute: integer
+    position_monitor_offset: integer
+  # Add more as needed -- agents can extend
+
+news_monitoring:
+  interval_minutes: integer  # How often to check news (default 5)
+  high_impact_events: list   # Event types to watch: ["FOMC", "CPI", "NFP", ...]
+
+daily_report:
+  hour: integer
+  minute: integer
+  timezone: string
+  days: string               # Cron day_of_week: "mon-fri", "mon-sun", etc.

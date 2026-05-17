@@ -1,0 +1,69 @@
+market_type: crypto
+display_name: "Cryptocurrency"
+description: "24/7 digital asset market. No close. Volume peaks during US hours."
+
+hours:
+  continuous: true
+  timezone: "US/Eastern"
+
+sessions:
+  - name: asia
+    start_hour: 20
+    start_minute: 0
+    end_hour: 8
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "moderate_volume, altcoin_movement"
+  - name: europe
+    start_hour: 2
+    start_minute: 0
+    end_hour: 12
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "increasing_volume, trend_development"
+  - name: us
+    start_hour: 8
+    start_minute: 0
+    end_hour: 20
+    end_minute: 0
+    timezone: "US/Eastern"
+    characteristics: "highest_volume, institutional_activity"
+
+prime_window:
+  start_hour: 8
+  start_minute: 0
+  end_hour: 12
+  end_minute: 0
+  timezone: "US/Eastern"
+  reason: "US-Europe overlap -- institutional buying, highest BTC volume"
+
+scheduling:
+  M15:
+    cron_minutes: "0,15,30,45"
+    position_monitor_offset: 7
+  H1:
+    cron_minutes: "2"
+    position_monitor_offset: 30
+  H4:
+    cron_minutes: "2"
+    cron_hours: "0,4,8,12,16,20"
+    position_monitor_offset: 120
+  D:
+    cron_hour: 0
+    cron_minute: 5
+    position_monitor_offset: 480
+
+news_monitoring:
+  interval_minutes: 3
+  high_impact_events:
+    - SEC_Ruling
+    - Exchange_Hack
+    - ETF_Decision
+    - Regulation
+    - Whale_Movement
+
+daily_report:
+  hour: 0
+  minute: 0
+  timezone: "US/Eastern"
+  days: "mon-sun"

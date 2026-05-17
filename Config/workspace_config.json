@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-02-14T00:03:33Z",
+  "parent_workspace_id": "ws_trading_bot_a788ce3b_1771027413",
+  "parent_shard_created": true,
+  "agent_workspaces": {
+    "oanda_data": {
+      "workspace_id": "ws_trading_oanda_data_71758850_1771027413",
+      "workspace_name": "Oanda Data"
+    },
+    "technical_analyst": {
+      "workspace_id": "ws_trading_technical_analyst_de0fae5d_1771027413",
+      "workspace_name": "Technical Analysis"
+    },
+    "wolfram_analyst": {
+      "workspace_id": "ws_trading_wolfram_analyst_e34fb96a_1771027413",
+      "workspace_name": "Wolfram Analyst"
+    },
+    "news_analyst": {
+      "workspace_id": "ws_trading_news_analyst_bf72bc5a_1771027413",
+      "workspace_name": "News Analyst"
+    },
+    "weather_analyst": {
+      "workspace_id": "ws_trading_weather_analyst_66794d48_1771027413",
+      "workspace_name": "Weather Analyst"
+    },
+    "validator": {
+      "workspace_id": "ws_trading_validator_3e7393f7_1771027413",
+      "workspace_name": "Data Validator"
+    },
+    "execution": {
+      "workspace_id": "ws_trading_execution_8abc31f6_1771027413",
+      "workspace_name": "Execution"
+    },
+    "reporter": {
+      "workspace_id": "ws_trading_reporter_fe54342e_1771027413",
+      "workspace_name": "Reporting"
+    },
+    "cycle_orchestrator": {
+      "workspace_id": "ws_trading_cycle_orchestrator_3269e0d7_1771027413",
+      "workspace_name": "Orchestrator"
+    }
+  },
+  "instrument_workspaces": {
+    "EUR_USD": {
+      "workspace_id": "ws_trading_eur_usd_7b7b41bb_1771027413"
+    },
+    "USD_JPY": {
+      "workspace_id": "ws_trading_usd_jpy_c673093f_1771027413"
+    }
+  },
+  "instruments": [
+    "EUR_USD",
+    "USD_JPY"
+  ]
+}

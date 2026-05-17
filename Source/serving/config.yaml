@@ -1,0 +1,91 @@
+# Serving stack config — tenants + priorities + pinned prompts.
+# Loaded by gateway.py at startup. Reload requires service restart.
+
+# Backends — list of MLX 35B instances. v1 has one (port 11502). Phase 3
+# (Mac Studio) adds more replicas; the gateway round-robins among them. The
+# gateway treats them as a parallel pool — N backends = N requests in true
+# parallel, anything beyond that queues by priority.
+backends:
+  - name: "mlx-csi-primary"
+    url: "http://127.0.0.1:11502"
+    health_path: "/v1/models"
+    request_path: "/v1/chat/completions"
+    request_timeout_s: 240
+    # Each backend instance has a single in-flight slot — mlx_vlm serializes.
+    # When Mac Studio comes online, add another backend with its own slot.
+    in_flight_capacity: 1
+
+# Listen address for the gateway itself.
+gateway:
+  host: "127.0.0.1"
+  port: 11503
+
+# Worker pool — dispatchers between the priority queue and the backends.
+# CRITICAL: workers > sum(backend.in_flight_capacity) BREAKS PRIORITY ORDERING.
+#
+# Why: each worker greedily pulls the next item from the queue, then waits on
+# the backend semaphore. With 16 workers and 1 backend slot, workers pull items
+# instantly (queue stays empty) and then race fair-FIFO for the slot — priority
+# never gets a chance to sort because the queue is never deep.
+#
+# HTTP intake capacity (for "many tenants bursting simultaneously") is a
+# separate layer handled by uvicorn — it accepts ~100 concurrent connections by
+# default and they all pile up on the priority queue regardless of worker count.
+#
+# Formula: workers = sum(backend.in_flight_capacity)
+#   Today:        1 backend × 1 slot          → workers: 1
+#   + Mac Studio: 2 backends × 1 slot          → workers: 2
+#   + 9B for low-prio tenants:                 → +1 per added backend
+#   + Continuous batching (vLLM/fork future):  → workers = batch_capacity
+worker_pool:
+  size: 1
+
+# Tenants — every request is tagged with one tenant. Higher priority = lower
+# numeric value (priority queue is min-heap).
+# Trading is highest because live trading is latency-critical.
+# Subagents inherit a low priority so they don't preempt foreground work.
+tenants:
+  trading:
+    priority: 0
+    description: "Live forex trading agents (validator, TA, intelligence, guardian narrator, snipe cleanup, floor chat). Latency-sensitive."
+  openclaw:
+    priority: 3
+    description: "Open Claw coding sessions. Interactive — sub-second human-perceptible."
+  claude_code:
+    priority: 4
+    description: "Claude Code agent traffic (this very session)."
+  boardroom:
+    priority: 5
+    description: "Boardroom seat deliberations. Tolerates seconds."
+  subagents:
+    priority: 6
+    description: "Subagents spawned by Claude Code / Open Claw — long-running, lower priority than the parent."
+  default:
+    priority: 7
+    description: "Untagged requests."
+  background:
+    priority: 10
+    description: "Distillation, replay, training data prep. Never preempts live work."
+
+# Pinned prompts — DISABLED 2026-04-27.
+#
+# The original design assumed mlx_vlm had a cross-request prompt cache that we
+# could keep populated by sending periodic max_tokens=1 pings. Verified by
+# inspection: mlx_vlm/generate.py calls mx.clear_cache() 8+ times per generate
+# and the wrapper script (mlx_vlm_server_with_tools.py) calls
+# gc.collect() + mx.metal.clear_cache() after every request. No persistent KV
+# state survives between calls. The warmer was theatre — it ran successfully
+# but saved zero prefill time on subsequent real requests.
+#
+# Real prompt caching needs explicit make_prompt_cache integration in the
+# server (mlx_lm has this; mlx_vlm does not). See ROADMAP / next brainstorm.
+#
+# Leaving an empty list so the warmer code paths (warm_all, refresh_loop) run
+# as no-ops without a config schema change.
+pinned_prompts: []
+
+# Metrics — cache hit rate is approximated by tracking which requests share
+# system-prompt prefixes with a recently-served request to the same backend.
+metrics:
+  prometheus_endpoint: "/metrics"
+  log_every_n_requests: 50

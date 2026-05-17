@@ -1,0 +1,135 @@
+{
+  "_version": "1.0",
+  "_description": "Scheduling config for the entire trading team. Defines when each periodic job runs, market hours, session windows, and cache refresh policies.",
+
+  "market_hours": {
+    "_note": "Forex market: Sunday 5pm ET → Friday 5pm ET. All times in ET.",
+    "open": {"day": "sunday", "hour": 17, "minute": 0},
+    "close": {"day": "friday", "hour": 17, "minute": 0},
+    "skip_after_open_minutes": 30,
+    "warn_before_close_hours": 2,
+    "timezone": "America/New_York"
+  },
+
+  "sessions": {
+    "_note": "Four forex sessions. Times in ET. Overlaps are where liquidity is highest.",
+    "sydney":  {"open_et": "17:00", "close_et": "02:00", "pairs": ["AUD_USD", "NZD_USD", "AUD_NZD"]},
+    "tokyo":   {"open_et": "19:00", "close_et": "04:00", "pairs": ["USD_JPY", "EUR_JPY", "GBP_JPY"]},
+    "london":  {"open_et": "03:00", "close_et": "12:00", "pairs": ["EUR_USD", "GBP_USD", "EUR_GBP", "EUR_CHF", "USD_CHF"]},
+    "new_york":{"open_et": "08:00", "close_et": "17:00", "pairs": ["EUR_USD", "GBP_USD", "USD_CAD", "USD_JPY"]},
+    "best_window": {"start_et": "08:00", "end_et": "12:00", "_note": "London-NY overlap. Highest liquidity, tightest spreads."}
+  },
+
+  "cycle": {
+    "_note": "The main trading cycle — when orchestrator runs a full analysis and decision loop.",
+    "interval_minutes": 15,
+    "active_only_during": "market_hours",
+    "agents_involved": ["oanda_data", "intelligence", "technical_analyst", "validator", "execution", "reporter", "cycle_orchestrator"],
+    "skip_when": ["market_closed", "within_skip_after_open", "within_warn_before_close"]
+  },
+
+  "trade_monitor": {
+    "_note": "Position watchdog. Only active when trades are open.",
+    "interval_minutes": 5,
+    "active_when": "trades_open",
+    "checks": ["open_trade_status", "spreads", "recently_closed", "news_proximity", "account_health"],
+    "alerts_to": "cycle_orchestrator"
+  },
+
+  "intelligence_refresh": {
+    "_note": "Periodic data refresh jobs for the intelligence agent. Keeps cache warm so cycle runs are fast.",
+
+    "macro_data": {
+      "_note": "Interest rates, inflation, GDP, unemployment, trade balances. Slow-moving data.",
+      "interval_hours": 24,
+      "run_at_et": "06:00",
+      "cache_ttl_minutes": 1440,
+      "queries_per_currency": [
+        "{currency_country} interest rate",
+        "{currency_country} inflation rate",
+        "{currency_country} unemployment rate",
+        "{currency_country} GDP"
+      ],
+      "currencies": {
+        "USD": "US", "EUR": "eurozone", "GBP": "UK", "JPY": "Japan",
+        "AUD": "Australia", "NZD": "New Zealand", "CAD": "Canada", "CHF": "Switzerland"
+      },
+      "_reasoning": "Macro data updates weekly/monthly. One morning refresh gives the whole team current data all day. 24h TTL means it never goes stale during trading hours."
+    },
+
+    "news_scan": {
+      "_note": "Economic calendar and breaking news. Fast-moving.",
+      "interval_minutes": 15,
+      "cache_ttl_minutes": 15,
+      "active_only_during": "market_hours",
+      "source": "news_mcp",
+      "_reasoning": "News changes fast. 15-min refresh matches cycle interval so every cycle has fresh news. The trade_monitor checks news_proximity from the cache between cycles."
+    },
+
+    "weather_check": {
+      "_note": "Severe weather that could disrupt markets (hurricanes, earthquakes near financial centers).",
+      "interval_minutes": 30,
+      "cache_ttl_minutes": 30,
+      "active_only_during": "market_hours",
+      "source": "weather_mcp",
+      "_reasoning": "Weather changes slowly. 30-min refresh is plenty. Only matters for extreme events."
+    },
+
+    "oil_energy": {
+      "_note": "Crude oil and energy prices. Matters for CAD, NOK, and risk sentiment.",
+      "interval_hours": 4,
+      "cache_ttl_minutes": 240,
+      "query": "crude oil price",
+      "source": "wolfram_mcp",
+      "_reasoning": "Oil updates throughout the day but doesn't need per-cycle checking. 4h is enough for forex impact."
+    },
+
+    "cross_rates": {
+      "_note": "DXY (dollar index) and major cross rates for context.",
+      "interval_hours": 1,
+      "cache_ttl_minutes": 60,
+      "queries": ["US dollar index", "gold price"],
+      "source": "wolfram_mcp",
+      "_reasoning": "DXY and gold give broad market context. Hourly refresh catches shifts without burning API calls."
+    }
+  },
+
+  "reporter": {
+    "_note": "End-of-day summary and knowledge store update.",
+    "daily_summary": {
+      "run_at_et": "17:30",
+      "active_on": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+      "_note": "Runs 30 min after market close. Summarizes day's trades, P&L, lessons."
+    },
+    "weekly_summary": {
+      "run_at_et": "18:00",
+      "active_on": ["friday"],
+      "_note": "Runs 1 hour after Friday close. Weekly performance review."
+    }
+  },
+
+  "knowledge_maintenance": {
+    "_note": "Periodic knowledge store cleanup and pattern refresh.",
+    "interval_hours": 24,
+    "run_at_et": "05:00",
+    "tasks": [
+      "purge_expired_cache",
+      "refresh_setup_performance_stats",
+      "update_bad_sessions_from_recent_trades"
+    ],
+    "_reasoning": "Run before the macro refresh. Clean house first, then load fresh data."
+  },
+
+  "cache_policy": {
+    "_note": "How each data category flows through the system. Intelligence fetches and caches. Other agents read from cache. Only intelligence writes to cache.",
+    "categories": {
+      "wolfram_macro":  {"ttl_minutes": 1440, "writer": "intelligence", "readers": ["validator", "cycle_orchestrator"]},
+      "wolfram_stats":  {"ttl_minutes": 0,    "writer": "intelligence", "readers": ["validator"], "_note": "Always compute fresh — no caching"},
+      "news":           {"ttl_minutes": 15,   "writer": "intelligence", "readers": ["trade_monitor", "validator", "cycle_orchestrator"]},
+      "weather":        {"ttl_minutes": 30,   "writer": "intelligence", "readers": ["validator"]},
+      "oil_energy":     {"ttl_minutes": 240,  "writer": "intelligence", "readers": ["cycle_orchestrator"]},
+      "cross_rates":    {"ttl_minutes": 60,   "writer": "intelligence", "readers": ["cycle_orchestrator"]}
+    },
+    "_flow": "Intelligence agent writes to IntelligenceStore cache → other agents read from cache via get_cached(). No agent except intelligence makes external API calls for macro/news/weather data."
+  }
+}

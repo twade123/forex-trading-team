@@ -4,6 +4,12 @@ A multi-agent AI trading system that runs a swarm of LLM specialists to evaluate
 
 The system monitors 13 forex pairs continuously, evaluates trade setups through a multi-stage pipeline (chart pattern detection → technical analyst → validator judgment → execution), then hands live positions to a guardian agent that manages exits in real time.
 
+## Dashboard walkthrough
+
+https://github.com/twade123/forex-trading-team/raw/main/docs/videos/trading-ui-walkthrough.mp4
+
+> 30-second walkthrough of the dashboard — pair tabs, validator verdict cards, guardian threat zones, cycle stage timeline. (Click the video above; GitHub renders MP4s inline.)
+
 ---
 
 ## Why this project exists

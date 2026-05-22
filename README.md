@@ -2,7 +2,7 @@
 
 A multi-agent AI trading system that runs a swarm of LLM specialists to evaluate and manage live forex positions on OANDA. Originally built on the Anthropic API, the production validator now runs on a **locally-served Qwen3.5 35B model distilled from Claude Opus traces** — eliminating per-trade API cost and enabling sub-second iteration loops.
 
-The system monitors 13 forex pairs continuously, evaluates trade setups through a multi-stage pipeline (chart pattern detection → technical analyst → validator judgment → execution), then hands live positions to a guardian agent that manages exits in real time.
+The system is configured for **13 forex pairs** (see `Config/pair_schedule.json`); the user selects an active subset from the dashboard (`Config/instruments.json` — currently EUR_USD + USD_JPY). The pipeline runs continuously on the active pairs, evaluates trade setups through a multi-stage flow (chart pattern detection → technical analyst → validator judgment → execution), then hands live positions to a guardian agent that manages exits in real time.
 
 ---
 
@@ -86,7 +86,7 @@ It's been running live since early 2026 across multiple iteration cycles documen
 
 | Agent | Where | Role |
 |---|---|---|
-| **Trade Scout** | `Source/trade_scout.py` | Continuous M15 scan across 13 pairs. Detects 12 setup classes (fan exhaustion, retrace continuation, cascade, etc.) and queues high-probability setups for validation. |
+| **Trade Scout** | `Source/trade_scout.py` | Continuous M15 scan across the active pair subset. Detects multiple setup classes (fan exhaustion, retrace continuation, cascade, etc. — see `Source/scout_setup_detectors.py`) and queues high-probability setups for validation. |
 | **Technical Analyst** | `Source/agents/trading_cycle.py` + `Prompts/technical_analyst_v4.md` | Reads computed indicators (Sniper V4 fan, EMA structure, stoch, RSI, MACD), writes a thesis paragraph with conviction score. |
 | **Chart Generator** | `Source/chart_generator.py` | Renders M15 chart PNG (299 candles, EMA overlays, indicator panes) for the vision-capable validator. |
 | **Validator** | `Source/trade_validator.py` + `Prompts/ghost_validator_v1.md` | **Sole trade authority.** Receives full data package + chart image. Outputs CONFIRM / WATCH / REJECT with reasoning. Runs on local Qwen3.5 35B (LoRA-distilled from Opus). |
@@ -111,7 +111,7 @@ The serving stack is in `Source/serving/` (drift checking, adapter fusion, pinne
 The validator doesn't just read indicator values — it sees the chart. `vision_validator.py` packages the M15 chart PNG into the prompt, letting the model reason about pattern context (fan compression, trend exhaustion, S/R proximity) that's hard to encode numerically.
 
 ### Flight recorder (observability)
-`Source/flight_recorder.py` writes every stage of every cycle to SQLite (WAL mode, indexed by `cycle_id` + `stage`). Lets us answer "why did this trade lose?" by replaying the exact data the validator saw at decision time. Used by `scripts/replay_iter*.py` for cohort analysis when tuning the prompt.
+`Source/flight_recorder.py` writes every stage of every cycle to SQLite (WAL mode, indexed by `cycle_id` + `stage`). Lets us answer "why did this trade lose?" by replaying the exact data the validator saw at decision time. Used by `Source/scripts/replay_iter*.py` and `Source/diagnostics/*.py` for cohort analysis when tuning the prompt. (This repo ships a curated subset of replay scripts as representative examples; the full iteration history lives in git log.)
 
 ### Knowledge vault (shared memory across agents)
 Located outside this repo (`~/jarvis/knowledge/`) but referenced throughout. Every agent writes lessons / fixes / patterns to a FTS5-indexed markdown corpus that all other agents read at task start. This is how the system gets smarter over time without monolithic retraining.
@@ -138,26 +138,36 @@ Located outside this repo (`~/jarvis/knowledge/`) but referenced throughout. Eve
 
 ```
 Source/                  # All trading logic
-  agents/                # Cycle orchestrator, watch manager
-  scripts/               # Replay tools, audits, backfills, cohort analysis
-  optimizer/             # Backtest harness, ghost replay, optuna studies
+  agents/                # Cycle orchestrator, watch manager, team setup
+  scripts/               # Representative replay / audit / backtest / ops tools
+                         #   (post-audit: 27 curated files; full iteration
+                         #    history is in git log, not committed snapshot)
+  optimizer/             # Backtest harness, ghost replay, walk-forward
   backtester/            # Historical replay engine
-  serving/               # MLX serving, LoRA adapters, drift checking
-  migrations/            # SQLite schema migrations
-  Database/              # DB initialization scripts
+  serving/               # MLX gateway, LoRA adapter fusion, drift checking,
+                         #   pinned-prompt warmer, priority queue
+  diagnostics/           # Production analysis modules (cohort, drawdown,
+                         #   scout quality, watch health, etc.)
+  migrations/            # SQLite schema migrations + run_migrations.py
   trade_scout.py         # Continuous market scanner
   trade_validator.py     # Validator wrapper (local 35B or Anthropic)
   position_guardian.py   # Live trade manager
-  flight_recorder.py     # Observability sink
+  position_manager.py    # OANDA order placement / modification / closing
+  flight_recorder.py     # Observability sink (SQLite WAL)
   scheduler.py           # Cron-style cycle orchestrator
-  ...
-dashboard/               # Flask + SSE dashboard
-Prompts/                 # Live agent prompts (markdown, git-tracked)
-MCP/                     # MCP servers (OANDA, technical analysis)
+  vision_validator.py    # Chart-image packaging for the vision-capable validator
+  kronos_*.py            # Experimental — see "Experimental components" below
+  ...                    # ~125 production modules total
+dashboard/               # Flask + SSE dashboard (api_server.py)
+Prompts/                 # Live agent prompts (markdown, git-tracked) —
+                         #   ghost_validator_v1.md is the live validator prompt
+MCP/                     # MCP servers (OANDA, technical_analysis)
 Skills/                  # Plugin skills (chart context, pattern library)
-Config/                  # Runtime configuration
+Config/                  # Runtime configuration (instruments, pairs,
+                         #   schedule, playbooks, risk profiles)
 scripts/                 # Top-level operational scripts
-docs/                    # Research notes, design specs
+docs/                    # Research notes (MLX serving, vmlx deep-dive)
+                         #   + superpowers design specs and plans
 ```
 
 ---

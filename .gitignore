@@ -100,3 +100,5 @@ Source/optimizer/optuna_studies.db*
 
 # ── Flight recorder backups ─────────────────────────────────────
 flight_recorder.db.bak.*
+.flask_secret
+Source/Trading
